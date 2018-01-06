@@ -32,7 +32,21 @@ class WebCam extends Component{
       tracker.on('track', (event) => {
         if (event.data.length !== 0) {
           const base64Image = this.canvasRef.toDataURL("image/jpeg");
-          console.log('base64Image =>', base64Image);
+          console.log(window.AWS, 'window.AWS');
+          const rekognition = new window.AWS.Rekognition();
+          console.log('rekognition', rekognition);
+          rekognition.searchFacesByImage({
+            CollectionId:"123456789",
+            Image: {
+              S3Object: {
+               Bucket: "test-face-rekognition", 
+               Name: "2018-01-03_21:12:35.jpg"
+              }
+            },
+          }, function (err, data) {
+            if (err) console.log(err, err.stack);
+            else console.log(data);
+          });
         }
       });
     }, () => {});
