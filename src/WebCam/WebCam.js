@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { dataURItoBlob } from './dataURItoBlob';
 
 class WebCam extends Component{
   
@@ -37,12 +37,9 @@ class WebCam extends Component{
           console.log('rekognition', rekognition);
           rekognition.searchFacesByImage({
             CollectionId:"123456789",
-            Image: {
-              S3Object: {
-               Bucket: "test-face-rekognition", 
-               Name: "2018-01-03_21:12:35.jpg"
-              }
-            },
+            Image:{
+              Bytes: dataURItoBlob(base64Image)
+            }
           }, function (err, data) {
             if (err) console.log(err, err.stack);
             else console.log(data);
