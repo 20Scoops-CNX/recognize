@@ -1,32 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { rekoginition } from './../service/aws';
+import rekoginition from './../service/aws';
 
 
-
-
-class WebCam extends React.Component<{}>{
-  canvasRef: ?HTMLCanvasElement;
-  videoRef: ?HTMLVideoElement;
-  count: number = 0;
-  drawVideo(ctx: CanvasRenderingContext2D, tracker: any, videoRef: HTMLVideoElement){    
-    return () => {
-      ctx.drawImage(videoRef, 0, 0, 500, 400);
-      this.count += 1;
-      if(this.count % 20 === 0){
-        tracker.track(ctx.getImageData(0,0, 500, 400).data, 500, 400);
-      }
-      window.requestAnimationFrame(this.drawVideo(ctx, tracker, videoRef)); 
-    }
-  }
-
-  componentDidMount(){
-    window.navigator.getUserMedia({video: true, audio: false}, (localMediaStream) => {
+class WebCam extends React.Component<{}> {
+  componentDidMount() {
+    window.navigator.getUserMedia({ video: true, audio: false }, (localMediaStream) => {
       const tracker: any = new window.tracking.ObjectTracker('face');
-      const videoRef = this.videoRef;
-      const canvasRef = this.canvasRef;
-      if(canvasRef && videoRef){
+      const { videoRef, canvasRef } = this;
+      if (canvasRef && videoRef) {
         videoRef.src = window.URL.createObjectURL(localMediaStream);
         const ctx = canvasRef.getContext('2d');
         tracker.setInitialScale(4);
@@ -40,24 +23,36 @@ class WebCam extends React.Component<{}>{
         });
         videoRef.play();
       }
-      
+
       tracker.on('track', (event) => {
         if (event.data.length !== 0 && canvasRef) {
-          const base64Image = canvasRef.toDataURL("image/jpeg");
+          const base64Image = canvasRef.toDataURL('image/jpeg');
           rekoginition(base64Image);
         }
       });
     }, () => {});
   }
-
-  render(){
+  canvasRef: ?HTMLCanvasElement;
+  count: number = 0;
+  drawVideo(ctx: CanvasRenderingContext2D, tracker: any, videoRef: HTMLVideoElement) {
+    return () => {
+      ctx.drawImage(videoRef, 0, 0, 500, 400);
+      this.count += 1;
+      if (this.count % 20 === 0) {
+        tracker.track(ctx.getImageData(0, 0, 500, 400).data, 500, 400);
+      }
+      window.requestAnimationFrame(this.drawVideo(ctx, tracker, videoRef));
+    };
+  }
+  videoRef: ?HTMLVideoElement;
+  render() {
     return (
       <section>
-        <video id="video" width={500} height={400} autoPlay ref={(video) => { this.videoRef = video }} ></video>
-        <canvas style={{display: 'none'}} width={500} height={400} ref={(canvas) => { this.canvasRef = canvas }} ></canvas>
+        <video id="video" width={500} height={400} autoPlay ref={(video) => { this.videoRef = video; }} />
+        <canvas style={{ display: 'none' }} width={500} height={400} ref={(canvas) => { this.canvasRef = canvas; }} />
       </section>
     );
   }
-};
+}
 
 export default WebCam;
