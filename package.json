@@ -50,7 +50,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "eslint src",
-    "lint:fix":"eslint --fix src",
+    "lint:fix": "eslint --fix src",
     "lint:watch": "esw src -w --ignore-pattern src/registerServiceWorker.js",
     "prettier": "prettier-eslint src/**/*.js --write"
   },
@@ -97,7 +97,8 @@
     },
     "extends": [
       "airbnb",
-      "plugin:flowtype/recommended"
+      "plugin:flowtype/recommended",
+      "prettier"
     ],
     "plugins": [
       "flowtype",
@@ -123,6 +124,7 @@
     "babel-preset-flow": "^6.23.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
