@@ -20,9 +20,7 @@ class WebCam extends React.Component<{}> {
             if (videoRef.paused || videoRef.ended) {
               return;
             }
-            window.requestAnimationFrame(
-              this.drawVideo(ctx, tracker, videoRef)
-            );
+            window.requestAnimationFrame(this.drawVideo(ctx, tracker, videoRef));
           });
           videoRef.play();
         }
@@ -39,11 +37,7 @@ class WebCam extends React.Component<{}> {
   }
   canvasRef: ?HTMLCanvasElement;
   count: number = 0;
-  drawVideo(
-    ctx: CanvasRenderingContext2D,
-    tracker: any,
-    videoRef: HTMLVideoElement
-  ) {
+  drawVideo(ctx: CanvasRenderingContext2D, tracker: any, videoRef: HTMLVideoElement) {
     return () => {
       ctx.drawImage(videoRef, 0, 0, 500, 400);
       this.count += 1;
