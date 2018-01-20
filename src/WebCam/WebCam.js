@@ -3,7 +3,6 @@
 import * as React from 'react';
 import rekoginition from './../service/aws';
 
-
 class WebCam extends React.Component<{}> {
   componentDidMount() {
     window.navigator.getUserMedia({ video: true, audio: false }, (localMediaStream) => {
