@@ -7,7 +7,7 @@ class WebCam extends React.Component<{}> {
   componentDidMount() {
     window.navigator.getUserMedia(
       { video: true, audio: false },
-      (localMediaStream) => {
+      localMediaStream => {
         const tracker: any = new window.tracking.ObjectTracker('face');
         const { videoRef, canvasRef } = this;
         if (canvasRef && videoRef) {
