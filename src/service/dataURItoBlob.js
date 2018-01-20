@@ -8,4 +8,3 @@ export default (dataURI: string): Uint8Array => {
   }
   return new Uint8Array(array);
 };
-
