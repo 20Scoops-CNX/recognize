@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5555;
 
 const app = express();
 
-// Setup logger
+// Setup logger test comment
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
 // Serve static assets
