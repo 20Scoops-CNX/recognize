@@ -2,7 +2,10 @@ language: node_js
 node_js:
 - stable
 script: npm run lint
+before_deploy:
+  - npm run build
 deploy:
+  skip_cleanup: true
   provider: heroku
   api_key:
     secure: nNXIh3Xe3YobEc+fkDN97DcYTgmt6VRTHvc+oQNYca41oYaILdsjKpkp7lTnneHUdcxETO9UX0Cd7dSDecQ7Y4vZxTa7ObWmNF94rLUqVG9XlDmMHIdss0WVrFkSM00rapM4p+AzL5j0je4lS6PYLx2FycyyjznV07bBh182AQstzC3rRZ4hmUg3EnAD4F1lLlkHdumQjXmC3cROxo8KNj2IHDkx035ugh00h1CwqNnXup69yimBFz/qO/JEWchUyc/r1TGSe/xXKzQBoMNCE+N2yuya6hecg9aBqmjm8bUMQHSxjv6E6BaxIYq/2BA0xbNDPxO+u3lyRbfJtHiEEg/cuF2ReJW7eCk/3A1zLk4nSI46qpub0YfXMMUvb5j3+Hyi2MHFODCsSNOijxQOwjrCs4OjTihug19i/jPt7yys1e78w1Mb3EEbhweevIuwPFHaVa5cdWhUFzJdfakKHsz4WbpfytY38z613jI87jdGm6epYKLtkIZ6/m91daunTY07UGHLw/hClnDACT3P2Du/QppFYDon2Y3apU0vK9cab5XBe3TyryYdBoly7FDBaZgiJZUREXiIG9K3mXcmQxqnMdrFBJYeF3q02vnFRwSYpLT1/jm6dLatS66ITPq09QFTZQp7mGmh7HaRx/Jb+CtRBBuH56BOlNuj4N/lR5Q=
