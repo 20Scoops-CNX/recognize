@@ -3,7 +3,6 @@ node_js:
 - stable
 script: 
   - npm run lint
-  - unset CI
 before_deploy:
   - npm run build
 deploy:
