@@ -1,7 +1,9 @@
 language: node_js
 node_js:
 - stable
-script: npm run lint
+script: 
+  - npm run lint
+  - unset CI
 before_deploy:
   - npm run build
 deploy:
@@ -12,3 +14,6 @@ deploy:
   app: recognize
   on:
     repo: Elecweb/recognize
+branches:
+  only: 
+    - master
