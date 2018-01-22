@@ -1,7 +1,9 @@
 // test;
+
+console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
 const creds = new window.AWS.Credentials(
-  'AKIAJ7HW6B5R5Y3GBRTQ',
-  'n8Qs8QT2mpiAVhHkQaHOnnxlrw8GU0hKsraZgiOO'
+  'AKIAIFFLWN5CDUNXN6NQ',
+  '0/QDT2fpT36kbvuro8HDp/GxqbIRunBMYufkwuIS'
 );
 const myConfig = new window.AWS.Config({
   credentials: creds,
