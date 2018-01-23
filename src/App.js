@@ -2,7 +2,7 @@
 
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import WebCam from './components/WebCam/WebCam';
 import ShowImageModal from './components/ShowImageModal/ShowImageModal';
 

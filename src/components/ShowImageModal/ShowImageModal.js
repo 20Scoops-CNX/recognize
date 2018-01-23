@@ -18,12 +18,15 @@ type Props = {
 const ShowImageModal = ({ image, isShow }: Props) => {
   console.log(isShow, image);
   return (
-    <Modal isOpen={isShow} style={modalStyle}>
-      <img
-        src={image}
-        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        alt="user"
-      />
+    <Modal isOpen={isShow} style={modalStyle} closeTimeoutMS={1000}>
+      <div className="overlay" />
+      <div className="content">
+        <img
+          src={image}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          alt="user"
+        />
+      </div>
     </Modal>
   );
 };
