@@ -1,6 +1,6 @@
 // @flow
 
-import { FOUND_IMAGE } from '../actions/foundImage';
+import { FOUND_IMAGE, RESET_FOUND_IMAGE } from '../actions/foundImage';
 import type { foundImageAction } from '../actions/foundImage';
 
 type foundImageReducer = {
@@ -22,6 +22,11 @@ export default (
       return {
         image: `https://s3.amazonaws.com/elecweb/${payload.image}`,
         isShow: true
+      };
+    case RESET_FOUND_IMAGE:
+      return {
+        image: null,
+        isShow: false
       };
     default:
       return state;

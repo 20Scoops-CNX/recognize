@@ -8,32 +8,55 @@ import {
   getFoundImageIsShow,
   getFoundImageUrl
 } from '../../reducers/foundImage';
+import { resetFoundImage as resetFoundImageAction } from '../../actions/foundImage';
 import modalStyle from './modalStyle';
 
 type Props = {
   image: string,
-  isShow: boolean
+  isShow: boolean,
+  resetFoundImage: () => void
 };
 
-const ShowImageModal = ({ image, isShow }: Props) => {
-  console.log(isShow, image);
-  return (
-    <Modal isOpen={isShow} style={modalStyle} closeTimeoutMS={1000}>
-      <div className="overlay" />
-      <div className="content">
+const ShowImageModal = ({ image, isShow, resetFoundImage }: Props) => (
+  <Modal
+    isOpen={isShow}
+    style={modalStyle}
+    closeTimeoutMS={1000}
+    onRequestClose={resetFoundImage}
+  >
+    <div
+      className="overlay"
+      onClick={resetFoundImage}
+      onKeyPress={resetFoundImage}
+      role="button"
+      tabIndex={0}
+    />
+    <div className="content">
+      {image ? (
         <img
           src={image}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          alt="user"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+          alt="user found"
         />
-      </div>
-    </Modal>
-  );
-};
+      ) : null}
+    </div>
+  </Modal>
+);
 
 const mapStateToProps = state => ({
   image: getFoundImageUrl(state),
   isShow: getFoundImageIsShow(state)
 });
 
-export default connect(mapStateToProps)(ShowImageModal);
+const resetFoundImage = () => {
+  console.log('close click', resetFoundImageAction());
+  return resetFoundImageAction();
+};
+
+export default connect(mapStateToProps, {
+  resetFoundImage
+})(ShowImageModal);
