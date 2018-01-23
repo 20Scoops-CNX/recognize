@@ -1,0 +1,117 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  .content{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)  scale(0);
+    z-index: 5;
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  &--after-open{
+    .content{
+      animation: zoomIn .4s .8s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    } 
+  }
+  &--before-close{
+    .content{
+      animation: zoomOut .4s 0s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    } 
+  }
+  .overlay{
+   background-color: rgba(0, 0, 0, .5) !important;
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 3;
+   width: 100%;
+   height: 100%;
+   transform:scaleY(.01) scaleX(0);
+  }
+  &--after-open{
+    .overlay{
+      animation: unFoldIn 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+  }
+  &--before-close{
+    .overlay{
+      animation: unFoldOut 1s .3s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+  }
+}
+
+@keyframes unFoldIn{
+  0% {
+    transform:scaleY(.005) scaleX(0);
+  }
+  50% {
+    transform:scaleY(.005) scaleX(1);
+  }
+  100% {
+    transform:scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes unFoldOut{
+  0% {
+    transform:scaleY(1) scaleX(1);
+  }
+  50% {
+    transform:scaleY(.005) scaleX(1);
+  }
+  100% {
+    transform:scaleY(.005) scaleX(0);
+  }
+}
+
+@keyframes zoomIn{
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes zoomOut{
+   0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+

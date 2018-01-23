@@ -1,9 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import rekoginition from './../service/aws';
+import { connect } from 'react-redux';
 
-class WebCam extends React.Component<{}> {
+import rekoginition from '../../service/aws';
+import { foundImage as foundImageActionCreator } from './../../actions/foundImage';
+
+class WebCam extends React.Component<{
+  foundImage: (image: string) => void
+}> {
   componentDidMount() {
     window.navigator.getUserMedia(
       { video: true, audio: false },
@@ -30,7 +35,11 @@ class WebCam extends React.Component<{}> {
         tracker.on('track', event => {
           if (event.data.length !== 0 && canvasRef) {
             const base64Image = canvasRef.toDataURL('image/jpeg');
-            rekoginition(base64Image);
+            rekoginition(base64Image).then(image => {
+              console.log('image >', image);
+              const { foundImage } = this.props;
+              foundImage(image);
+            });
           }
         });
       },
@@ -79,4 +88,12 @@ class WebCam extends React.Component<{}> {
   }
 }
 
-export default WebCam;
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = dispatch => ({
+  foundImage: (image: string) => {
+    dispatch(foundImageActionCreator(image));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WebCam);

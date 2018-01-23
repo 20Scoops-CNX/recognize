@@ -2,8 +2,9 @@
 
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import WebCam from './WebCam/WebCam';
+import './App.scss';
+import WebCam from './components/WebCam/WebCam';
+import ShowImageModal from './components/ShowImageModal/ShowImageModal';
 
 const App = () => (
   <div className="App">
@@ -13,6 +14,7 @@ const App = () => (
     </header>
     <div>
       <WebCam />
+      <ShowImageModal />
     </div>
   </div>
 );
