@@ -1,3 +1,10 @@
+/* eslint  import/newline-after-import: "off" */
+/* eslint  import/first: "off" */
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
