@@ -10,7 +10,7 @@ console.log(
   'process.env.AWS_SECRET_ACCESS_KEY'
 );
 
-const awsKey = REACT_APP_AWS_SECRET_ACCESS_KEY;
+const awsKey = process.env.REACT_APP_AWS_SECRET_ACCESS_KEY;
 const awsSecretKey = process.env.REACT_APP_AWS_SECRET_KEY;
 const creds = new window.AWS.Credentials(awsKey, awsSecretKey);
 const myConfig = new window.AWS.Config({
