@@ -2,7 +2,11 @@
 
 console.log(process.env.NODE_ENV, 'process.env.NODE_ENV');
 console.log(
-  process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  process.env.AWS_SECRET_KEY,
+  'process.env.AWS_SECRET_KEY'
+);
+console.log(
+  process.env.AWS_SECRET_ACCESS_KEY,
   'process.env.AWS_SECRET_ACCESS_KEY'
 );
 
