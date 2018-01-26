@@ -1,5 +1,8 @@
 /* eslint  import/newline-after-import: "off" */
 /* eslint  import/first: "off" */
+/* eslint  import/no-extraneous-dependencies: "off" */
+/* eslint  import/no-unresolved: "off" */
+/* eslint  import/extensions: "off" */
 
 import dotenv from 'dotenv';
 
@@ -9,7 +12,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import 'aws-sdk';
+// import 'aws-sdk';
 import 'tracking';
 import 'tracking/build/data/face';
 
