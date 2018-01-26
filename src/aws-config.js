@@ -7,11 +7,6 @@ console.log(
   'process.env.AWS_SECRET_ACCESS_KEY'
 );
 
-console.log(
-  process.env.AWS_SECRET_KEY,
-  'process.env.AWS_SECRET_KEY'
-);
-
 const awsKey =
   process.env.NODE_ENV === 'development'
     ? process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
