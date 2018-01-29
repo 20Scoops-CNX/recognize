@@ -2,7 +2,7 @@
 import dataURItoBlob from './dataURItoBlob';
 
 const rekognition = new window.AWS.Rekognition();
-const collectionId: string = 'namphung';
+const collectionId: string = '123456789';
 export default (base64Image: string): Promise<any> =>
   new Promise((resolve, reject) => {
     rekognition.searchFacesByImage(
