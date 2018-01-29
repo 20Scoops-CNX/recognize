@@ -30,12 +30,14 @@ class WebCam extends React.Component<{
           });
           videoRef.play();
         }
-        tracker.on('track', event => {
-          if (event.data.length !== 0 && canvasRef) {
-            const base64Image = canvasRef.toDataURL('image/jpeg');
-            this.props.recognizeImage(base64Image);
-          }
-        });
+        window.setTimeout(() => {
+          tracker.on('track', event => {
+            if (event.data.length !== 0 && canvasRef) {
+              const base64Image = canvasRef.toDataURL('image/jpeg');
+              this.props.recognizeImage(base64Image);
+            }
+          });
+        }, 3000);
       },
       () => {}
     );
@@ -59,7 +61,7 @@ class WebCam extends React.Component<{
   videoRef: ?HTMLVideoElement;
   render() {
     return (
-      <section>
+      <section className="webcam">
         <video
           id="video"
           width={500}

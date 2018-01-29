@@ -2,6 +2,7 @@
 
 import type { ACTION } from './helpers';
 import rekoginition from '../service/aws';
+import { awsRequest, awsSuccess, awsFail } from './aws';
 
 export type foundImageAction = ACTION<{ image: string }>;
 
@@ -15,16 +16,23 @@ export const foundImage = (base64Image: string): foundImageAction => (
   dispatch,
   getState
 ) => {
-  const { foundImage: foundImageState } = getState();
-  if (!foundImageState.isShow) {
-    return rekoginition(base64Image).then(image => {
-      dispatch({
-        type: FOUND_IMAGE,
-        payload: {
-          image
-        }
-      });
-    });
+  const { foundImage: foundImageState, aws: awsState } = getState();
+  console.log('awsState', awsState);
+  if (!foundImageState.isShow && !awsState.isLoading) {
+    dispatch(awsRequest());
+    return rekoginition(base64Image, () => dispatch(awsSuccess())).then(
+      image => {
+        dispatch({
+          type: FOUND_IMAGE,
+          payload: {
+            image
+          }
+        });
+      },
+      () => {
+        dispatch(awsFail());
+      }
+    );
   }
   return null;
 };
