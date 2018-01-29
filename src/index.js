@@ -10,8 +10,9 @@ dotenv.config();
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import ReduxThunk from 'redux-thunk';
 // import 'aws-sdk';
 import 'tracking';
 import 'tracking/build/data/face';
@@ -22,7 +23,7 @@ import rootReducers from './reducers';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(rootReducers);
+const store = createStore(rootReducers, applyMiddleware(ReduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
