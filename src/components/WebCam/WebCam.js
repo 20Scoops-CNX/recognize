@@ -3,11 +3,10 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import rekoginition from '../../service/aws';
 import { foundImage as foundImageActionCreator } from './../../actions/foundImage';
 
 class WebCam extends React.Component<{
-  foundImage: (image: string) => void
+  recognizeImage: (image: string) => void
 }> {
   componentDidMount() {
     window.navigator.getUserMedia(
@@ -31,17 +30,14 @@ class WebCam extends React.Component<{
           });
           videoRef.play();
         }
-
-        tracker.on('track', event => {
-          if (event.data.length !== 0 && canvasRef) {
-            const base64Image = canvasRef.toDataURL('image/jpeg');
-            rekoginition(base64Image).then(image => {
-              console.log('image >', image);
-              const { foundImage } = this.props;
-              foundImage(image);
-            });
-          }
-        });
+        window.setTimeout(() => {
+          tracker.on('track', event => {
+            if (event.data.length !== 0 && canvasRef) {
+              const base64Image = canvasRef.toDataURL('image/jpeg');
+              this.props.recognizeImage(base64Image);
+            }
+          });
+        }, 3000);
       },
       () => {}
     );
@@ -65,7 +61,7 @@ class WebCam extends React.Component<{
   videoRef: ?HTMLVideoElement;
   render() {
     return (
-      <section>
+      <section className="webcam">
         <video
           id="video"
           width={500}
@@ -88,11 +84,16 @@ class WebCam extends React.Component<{
   }
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    isShow: state.foundImage.isShow
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  foundImage: (image: string) => {
-    dispatch(foundImageActionCreator(image));
+  recognizeImage: (base64Image: string) => {
+    dispatch(foundImageActionCreator(base64Image));
   }
 });
 

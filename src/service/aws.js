@@ -2,8 +2,8 @@
 import dataURItoBlob from './dataURItoBlob';
 
 const rekognition = new window.AWS.Rekognition();
-const collectionId: string = 'namphung';
-export default (base64Image: string): Promise<any> =>
+const collectionId: string = '123456789';
+export default (base64Image: string, onCallSuccess: () => void): Promise<any> =>
   new Promise((resolve, reject) => {
     rekognition.searchFacesByImage(
       {
@@ -17,6 +17,7 @@ export default (base64Image: string): Promise<any> =>
           reject(err);
         } else {
           const { FaceMatches } = data;
+          onCallSuccess();
           if (FaceMatches.length > 0) {
             resolve(FaceMatches[0].Face.ExternalImageId);
           }

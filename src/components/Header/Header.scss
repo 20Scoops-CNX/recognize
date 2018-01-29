@@ -1,0 +1,30 @@
+@keyframes fullscreen {
+  0% {
+    height: 100vh;
+  }
+
+  100% {
+    height: 100px;
+  }
+}
+
+@keyframes change-bg-color {
+  0% {
+    background-color: #383736;
+  }
+
+  100% {
+    background-color: #D62E2E;
+  }
+}
+
+.header {
+  width: 100vw;
+  height: 100vh;
+  background-color: #383736;
+  animation: fullscreen .3s 3.2s ease-out forwards, change-bg-color .3s 2.3s forwards;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .7);
+}

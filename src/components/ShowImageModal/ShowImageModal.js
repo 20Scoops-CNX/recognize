@@ -21,7 +21,7 @@ const ShowImageModal = ({ image, isShow, resetFoundImage }: Props) => (
   <Modal
     isOpen={isShow}
     style={modalStyle}
-    closeTimeoutMS={1000}
+    closeTimeoutMS={1500}
     onRequestClose={resetFoundImage}
   >
     <div
@@ -34,6 +34,7 @@ const ShowImageModal = ({ image, isShow, resetFoundImage }: Props) => (
     <div className="content">
       {image ? (
         <img
+          className="img-profile"
           src={image}
           style={{
             width: '100%',
