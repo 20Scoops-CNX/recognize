@@ -1,0 +1,41 @@
+@keyframes open {
+  0% {
+    transform: translate(-10px, 0);
+  }
+  
+  30% {
+    transform: translate(-11px, 0);
+  }
+  
+  80% {
+    transform: translate(1px, 0);
+  }
+  
+  100% {
+    transform: translate(0px, 0);
+  }
+}
+
+@keyframes change-color{
+  0% {
+    fill: #D62E2E;
+  }
+  
+  100% {
+    fill: #fff;
+  }
+}
+
+.logo {
+  width: 200px;
+}
+
+.switch{
+  transform: translate(-10px, 0);
+  animation: open .3s 2s forwards; 
+}
+
+#Navigation-Bar-Light{
+  fill: #D62E2E;;
+  animation: change-color .3s 2.3s forwards; 
+}
