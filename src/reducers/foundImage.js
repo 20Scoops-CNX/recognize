@@ -20,7 +20,9 @@ export default (
   switch (type) {
     case FOUND_IMAGE:
       return {
-        image: `https://s3.amazonaws.com/elecweb/${payload.image}`,
+        image: `https://s3.amazonaws.com/test-face-rekognition/${
+          payload.image
+        }`,
         isShow: true
       };
     case RESET_FOUND_IMAGE:
